@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 import { useState, useEffect } from "react";
-import Login from './components/login';
+import Login from "./components/Login";
+import FormularioVenta from "./components/FormularioVenta.jsx";
 
 function App() {
   const [usuario, setUsuario] = useState(null);
@@ -41,19 +41,12 @@ function App() {
         </span>
         <button onClick={cerrarSesion}>Cerrar sesión</button>
       </header>
+
+      <main className="app">
+        <FormularioVenta />
+      </main>
     </div>
   );
 }
 
 export default App;
-=======
-import FormularioVenta from './components/FormularioVenta.jsx'
-
-export default function App() {
-  return (
-    <main className="app">
-      <FormularioVenta />
-    </main>
-  )
-}
->>>>>>> origin/main
