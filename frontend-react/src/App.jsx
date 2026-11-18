@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import Login from './components/login';
 
@@ -45,3 +46,14 @@ function App() {
 }
 
 export default App;
+=======
+import FormularioVenta from './components/FormularioVenta.jsx'
+
+export default function App() {
+  return (
+    <main className="app">
+      <FormularioVenta />
+    </main>
+  )
+}
+>>>>>>> origin/main

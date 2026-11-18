@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -48,10 +49,25 @@
   #social .button-icon {
     filter: invert(1) brightness(2);
   }
+=======
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: #1e293b;
+  background-color: #eef2f7;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+>>>>>>> origin/main
 }
 
 body {
   margin: 0;
+<<<<<<< HEAD
 }
 
 #root {
@@ -108,4 +124,13 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+=======
+  min-height: 100vh;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 1rem 4rem;
+>>>>>>> origin/main
 }
