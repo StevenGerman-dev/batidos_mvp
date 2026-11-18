@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
@@ -108,4 +108,3 @@ frontend-react/
 ```bash
 git checkout -b feature/SCRUM-5-ventas
 ```
->>>>>>> origin/main

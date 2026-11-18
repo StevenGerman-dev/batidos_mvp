@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Logs
 logs
 *.log
@@ -30,4 +30,4 @@ dist/
 .env.local
 *.log
 .DS_Store
->>>>>>> origin/main
+
