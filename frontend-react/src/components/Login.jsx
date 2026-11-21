@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { usarApi } from "../services/api";
 
 export default function Login({ onLoginExitoso }) {
   const [email, setEmail] = useState("admin@batidos.com");
@@ -8,6 +9,26 @@ export default function Login({ onLoginExitoso }) {
   const manejarSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
+    // Modo demostración: sin VITE_API_URL no hay backend PHP disponible.
+    if (!usarApi()) {
+      const usuarioDemo = {
+        id: 1,
+        nombre: email.split("@")[0] || "Demo",
+        rol: "Administrador",
+      };
+
+      localStorage.setItem(
+        "sesion_batidos",
+        JSON.stringify({
+          usuario: usuarioDemo,
+          expira_en: Date.now() + 1800 * 1000,
+        }),
+      );
+
+      onLoginExitoso(usuarioDemo);
+      return;
+    }
 
     try {
       const res = await fetch("http://localhost:8000/login.php", {
@@ -45,6 +66,11 @@ export default function Login({ onLoginExitoso }) {
       }}
     >
       <h2>Iniciar Sesión - Batidos MVP</h2>
+      {!usarApi() && (
+        <p style={{ fontSize: "0.8rem", color: "#64748b", marginBottom: "12px" }}>
+          Modo demostración: usa cualquier contraseña. Los datos se guardan en este navegador.
+        </p>
+      )}
       <form onSubmit={manejarSubmit}>
         <div style={{ marginBottom: "12px" }}>
           <label>Correo:</label>
