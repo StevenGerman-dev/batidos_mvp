@@ -1,11 +1,7 @@
-const CLAVE_ALMACEN = 'ventas_registradas'
+import { request, usuarioActivoId, usarApi } from './api'
+import { actualizarStockLocal } from './insumos'
 
-/**
- * URL de la API PHP/MySQL (carpeta backend-php servida por WampServer).
- * Si no se define VITE_API_URL, las ventas se guardan en localStorage para
- * poder probar la pantalla sin servidor.
- */
-const API_URL = import.meta.env.VITE_API_URL?.trim().replace(/\/$/, '') ?? ''
+const CLAVE_ALMACEN = 'ventas_registradas'
 
 function leerVentasLocales() {
   try {
@@ -21,42 +17,69 @@ function guardarVentasLocales(ventas) {
   window.localStorage.setItem(CLAVE_ALMACEN, JSON.stringify(ventas))
 }
 
+export function calcularMetricas(total, insumos = []) {
+  const costoTotal = insumos.reduce(
+    (suma, item) => suma + Number(item.cantidad_usada || 0) * Number(item.costo_unitario || 0),
+    0,
+  )
+  const costo = Number(costoTotal.toFixed(2))
+  const ganancia = Number((Number(total || 0) - costo).toFixed(2))
+  const margen = Number(total || 0) > 0 ? Number(((ganancia / Number(total)) * 100).toFixed(2)) : 0
+
+  return {
+    costo_total: costo,
+    ganancia,
+    margen_porcentaje: margen,
+  }
+}
+
 export async function listarVentas() {
-  if (API_URL) {
-    const respuesta = await fetch(`${API_URL}/ventas.php`)
-    if (!respuesta.ok) {
-      throw new Error('No se pudo obtener el listado de ventas.')
-    }
-    return respuesta.json()
+  if (usarApi()) {
+    const datos = await request('/ventas.php')
+    return datos.ventas ?? []
   }
 
   return leerVentasLocales()
 }
 
 export async function registrarVenta(datos) {
-  // La tabla `ventas` de batidos_mvp usa: fecha, producto, cantidad, total.
+  const insumos = Array.isArray(datos.insumos) ? datos.insumos : []
+  const metricas = calcularMetricas(datos.totalCobrado, insumos)
+
   const venta = {
     id: crypto.randomUUID(),
     fecha: datos.fecha,
     producto: datos.producto.trim(),
     cantidad: Number(datos.cantidad),
     total: Number(datos.totalCobrado),
+    usuario_id: usuarioActivoId(),
+    insumos: insumos.map((item) => ({
+      insumo_id: Number(item.insumo_id),
+      nombre: item.nombre,
+      unidad_medida: item.unidad_medida,
+      cantidad_usada: Number(item.cantidad_usada),
+      costo_unitario: Number(item.costo_unitario),
+    })),
+    ...metricas,
     registradaEn: new Date().toISOString(),
   }
 
-  if (API_URL) {
-    const respuesta = await fetch(`${API_URL}/ventas.php`, {
+  if (usarApi()) {
+    const respuesta = await request('/ventas.php', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(venta),
     })
 
-    if (!respuesta.ok) {
-      throw new Error('El servidor no pudo registrar la venta. Intenta nuevamente.')
-    }
-
-    return respuesta.json()
+    return respuesta.venta
   }
+
+  actualizarStockLocal(
+    venta.insumos.map((item) => ({
+      insumo_id: item.insumo_id,
+      cantidad: item.cantidad_usada,
+      signo: -1,
+    })),
+  )
 
   const ventas = leerVentasLocales()
   ventas.push(venta)

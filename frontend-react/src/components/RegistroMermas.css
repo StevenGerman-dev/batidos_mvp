@@ -1,0 +1,289 @@
+.mermas {
+  width: min(1120px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mermas__cabecera {
+  background: linear-gradient(135deg, #b45309 0%, #ea580c 100%);
+  color: #fff7ed;
+  padding: 2rem 2.25rem;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px -24px rgba(180, 83, 9, 0.8);
+}
+
+.mermas__etiqueta {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fed7aa;
+  margin-bottom: 0.5rem;
+}
+
+.mermas__cabecera h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.15rem);
+}
+
+.mermas__cabecera p {
+  margin: 0.65rem 0 0;
+  max-width: 70ch;
+  color: #ffedd5;
+  font-size: 0.95rem;
+}
+
+.mermas__diseno {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.mermas__formulario,
+.mermas__resumen,
+.mermas__historial {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px -24px rgba(15, 23, 42, 0.45);
+}
+
+.mermas__formulario {
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mermas__formulario h2,
+.mermas__resumen h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+.mermas__formulario .campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.mermas__formulario .campo label,
+.mermas__resumen span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.mermas__formulario input,
+.mermas__formulario select,
+.mermas__formulario textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.92rem;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-family: inherit;
+}
+
+.mermas__formulario textarea {
+  resize: vertical;
+}
+
+.mermas__formulario input:focus,
+.mermas__formulario select:focus,
+.mermas__formulario textarea:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #ea580c;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.16);
+}
+
+.mermas__formulario input[aria-invalid='true'],
+.mermas__formulario select[aria-invalid='true'] {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.mermas__formulario .boton--primario {
+  background: #ea580c;
+  align-self: flex-end;
+}
+
+.mermas__formulario .boton--primario:hover:not(:disabled) {
+  background: #c2410c;
+}
+
+.mermas__stock {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.mermas__stock > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.8rem 1rem;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+}
+
+.mermas__stock span {
+  font-size: 0.75rem;
+  color: #9a3412;
+}
+
+.mermas__stock strong {
+  font-size: 1.05rem;
+  color: #7c2d12;
+}
+
+.mermas__stock .stock--invalido {
+  color: #b91c1c;
+}
+
+.mermas__resumen {
+  padding: 1.5rem;
+}
+
+.mermas__resumen-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.mermas__resumen-grid > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.8rem 0.9rem;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.mermas__resumen-grid strong {
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.mermas__resumen-grid .resumen--merma {
+  color: #b91c1c;
+}
+
+.mermas__resumen-grid .resumen--ajuste {
+  color: #047857;
+}
+
+.mermas__resumen p {
+  margin: 1rem 0 0;
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.mermas__historial {
+  padding: 1.5rem;
+}
+
+.mermas__historial-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.mermas__historial-cabecera h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+.mermas__historial-cabecera span {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.mermas__vacio {
+  margin: 0;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+}
+
+.mermas__tabla-contenedor {
+  overflow-x: auto;
+}
+
+.mermas__tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.mermas__tabla th,
+.mermas__tabla td {
+  padding: 0.65rem 0.7rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.mermas__tabla th {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.mermas__tabla tbody tr:hover {
+  background: #f8fafc;
+}
+
+.tipo {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.tipo--merma {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.tipo--ajuste {
+  background: #d1fae5;
+  color: #047857;
+}
+
+@media (max-width: 900px) {
+  .mermas__diseno {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .mermas__cabecera,
+  .mermas__formulario,
+  .mermas__resumen,
+  .mermas__historial {
+    padding: 1.25rem;
+  }
+
+  .mermas__stock {
+    grid-template-columns: 1fr;
+  }
+}

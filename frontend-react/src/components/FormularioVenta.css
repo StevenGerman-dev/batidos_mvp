@@ -228,7 +228,134 @@
   text-align: right;
 }
 
+.campo select {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.95rem;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+}
+
+.campo select:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+.boton--secundario {
+  align-self: end;
+  background: #e0e7ff;
+  color: #1e3a8a;
+  padding: 0.68rem 1.2rem;
+}
+
+.boton--secundario:hover:not(:disabled) {
+  background: #c7d2fe;
+}
+
+.detalle {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.detalle__cabecera h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #1e293b;
+}
+
+.detalle__cabecera p {
+  margin: 0.3rem 0 1rem;
+  font-size: 0.84rem;
+  color: #64748b;
+}
+
+.detalle__controles {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.detalle__vacio {
+  margin: 1rem 0 0;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #94a3b8;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+}
+
+.detalle__tabla {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.detalle__tabla th,
+.detalle__tabla td {
+  padding: 0.55rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.detalle__tabla th {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.detalle__tabla td:nth-child(n + 2),
+.detalle__tabla th:nth-child(n + 2) {
+  text-align: right;
+}
+
+.detalle__quitar {
+  border: none;
+  background: #fee2e2;
+  color: #b91c1c;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.detalle__quitar:hover {
+  background: #fecaca;
+}
+
+.detalle__resumen {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding: 0.85rem 1rem;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: #334155;
+}
+
+.detalle__resumen strong {
+  color: #1e3a8a;
+}
+
 @media (max-width: 640px) {
+  .detalle__controles {
+    grid-template-columns: 1fr;
+  }
+
   .ventas__cabecera,
   .ventas__formulario,
   .historial {
