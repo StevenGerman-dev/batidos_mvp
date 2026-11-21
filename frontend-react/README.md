@@ -91,7 +91,12 @@ Para conectarte a la API crea `frontend-react/.env`:
 VITE_API_URL=http://localhost:8000
 ```
 
-Sin esa variable los módulos funcionan en modo demostración usando `localStorage`, con los mismos cálculos de costo y mermas.
+Sin esa variable los módulos funcionan en modo demostración usando `localStorage`, con los mismos cálculos de costo y mermas. En modo demo el login acepta cualquier contraseña.
+
+Con la API configurada, el usuario inicial del SQL es:
+
+- Correo: `admin@batidos.com`
+- Contraseña: `admin123`
 
 ## Cálculo de rentabilidad
 

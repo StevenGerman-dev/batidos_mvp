@@ -109,6 +109,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Usuario inicial para probar el login (password: admin123).
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `rol`, `created_at`) VALUES
+(1, 'Administrador', 'admin@batidos.com', '$2y$10$r6zJma31LKUhIIEd47eNAe5QF12h5FE7zM33mIF/s/QGxSmf4is/y', 'Administrador', '2026-11-21 00:00:00');
+
 -- --------------------------------------------------------
 
 --

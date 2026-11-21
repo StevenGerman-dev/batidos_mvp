@@ -39,6 +39,16 @@ CREATE TABLE IF NOT EXISTS `mermas` (
 
 COMMIT;
 
+-- Usuario inicial para probar el login (password: admin123), si no existe.
+INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `rol`, `created_at`)
+SELECT 1, 'Administrador', 'admin@batidos.com',
+       '$2y$10$r6zJma31LKUhIIEd47eNAe5QF12h5FE7zM33mIF/s/QGxSmf4is/y',
+       'Administrador', '2026-11-21 00:00:00'
+FROM DUAL
+WHERE NOT EXISTS (
+  SELECT 1 FROM `usuarios` WHERE `id` = 1 OR `email` = 'admin@batidos.com'
+);
+
 CREATE OR REPLACE VIEW `vw_rentabilidad_ventas` AS
 SELECT
   `v`.`id` AS `venta_id`,
