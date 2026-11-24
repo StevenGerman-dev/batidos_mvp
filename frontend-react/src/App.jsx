@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react'
-import Login from './components/Login'
+import Login from './components/Login.jsx'
+import PantallaInicio from './components/PantallaInicio.jsx'
 import FormularioVenta from './components/FormularioVenta.jsx'
+import PanelInventario from './components/PanelInventario.jsx'
 import Rentabilidad from './components/Rentabilidad.jsx'
 import RegistroMermas from './components/RegistroMermas.jsx'
 
 const MODULOS = [
+  { id: 'inicio', etiqueta: 'Inicio' },
   { id: 'ventas', etiqueta: 'Ventas', componente: FormularioVenta },
+  { id: 'inventario', etiqueta: 'Inventario', componente: PanelInventario },
   { id: 'rentabilidad', etiqueta: 'Rentabilidad', componente: Rentabilidad },
   { id: 'mermas', etiqueta: 'Mermas', componente: RegistroMermas },
 ]
 
 function App() {
   const [usuario, setUsuario] = useState(null)
-  const [moduloActivo, setModuloActivo] = useState('ventas')
+  const [moduloActivo, setModuloActivo] = useState('inicio')
 
   useEffect(() => {
     const sesionGuardada = JSON.parse(localStorage.getItem('sesion_batidos'))
@@ -29,13 +33,14 @@ function App() {
   const cerrarSesion = () => {
     localStorage.removeItem('sesion_batidos')
     setUsuario(null)
+    setModuloActivo('inicio')
   }
 
   if (!usuario) {
     return <Login onLoginExitoso={setUsuario} />
   }
 
-  const Modulo = MODULOS.find((modulo) => modulo.id === moduloActivo)?.componente ?? FormularioVenta
+  const ModuloActual = MODULOS.find((modulo) => modulo.id === moduloActivo)?.componente
 
   return (
     <div>
@@ -43,7 +48,9 @@ function App() {
         <span>
           Bienvenido, <strong>{usuario.nombre}</strong> ({usuario.rol})
         </span>
-        <button onClick={cerrarSesion}>Cerrar sesión</button>
+        <button type="button" onClick={cerrarSesion}>
+          Cerrar sesión
+        </button>
       </header>
 
       <nav className="app-nav" aria-label="Módulos del sistema">
@@ -61,7 +68,11 @@ function App() {
       </nav>
 
       <main className="app">
-        <Modulo />
+        {moduloActivo === 'inicio' || !ModuloActual ? (
+          <PantallaInicio onSeleccionarModulo={setModuloActivo} />
+        ) : (
+          <ModuloActual />
+        )}
       </main>
     </div>
   )
